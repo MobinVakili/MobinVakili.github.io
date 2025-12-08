@@ -70,7 +70,6 @@
         .bubble:nth-child(19) { left: 78%; width: 35px; height: 35px; animation-duration: 15s; animation-delay: -9s; }
         .bubble:nth-child(20) { left: 95%; width: 40px; height: 40px; animation-duration: 20s; animation-delay: 2s; }
 
-
         /* Animation keyframes */
         @keyframes rise {
             0% {
@@ -95,7 +94,8 @@
             border-radius: 9999px; /* pill shape */
             border: 1px solid transparent;
             transition: all 0.2s ease-in-out;
-            font-medium: 500;
+            font-weight: 500;
+            cursor: pointer;
         }
         /* Hover state for non-active links */
         .nav-link:not(.nav-active):hover {
@@ -110,6 +110,59 @@
         }
         .nav-active:hover {
             background-color: #f3f4f6; /* bg-gray-100 */
+        }
+
+        /* Page content */
+        .page-content {
+            display: none;
+        }
+        .page-content.active {
+            display: block;
+        }
+
+        /* Publication list styles */
+        .publication-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .publication-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Teaching item styles */
+        .teaching-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #f8fafc;
+            border-radius: 0.5rem;
+        }
+
+        /* Interests grid */
+        .interest-card {
+            padding: 1.5rem;
+            background-color: #f8fafc;
+            border-radius: 0.75rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .interest-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* CV download button */
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        .download-btn:hover {
+            background-color: #2563eb;
         }
     </style>
 </head>
@@ -140,12 +193,9 @@
     </div>
 
     <!-- Container -->
-    <!-- REMOVED max-w-5xl mx-auto -->
-    <div class="	">
+    <div class="">
         
         <!-- Header Navigation (Glass Effect) -->
-        <!-- Sharp corners (rounded-none) -->
-        <!-- ADDED padding px-4 sm:px-6 lg:px-8 -->
         <header class="flex flex-col sm:flex-row justify-between items-start sm:items-center backdrop-blur-sm bg-white/0 rounded-none p-6 px-4 sm:px-6 lg:px-8">
             <!-- Name -->
             <h1 class="text-4xl font-bold text-white mb-4 sm:mb-0">
@@ -154,23 +204,18 @@
             <nav>
                 <ul class="flex space-x-2 sm:space-x-4">
                     <!-- Navigation Links -->
-                    <!-- Active link -->
-                    <li><a href="#" class="nav-link nav-active">About</a></li>
-                    <!-- Inactive links -->
-                    <li><a href="#" class="nav-link text-blue-50">CV</a></li>
-                    <li><a href="#" class="nav-link text-blue-50">Publications</a></li>
-                    <li><a href="#" class="nav-link text-blue-50">Teaching</a></li>
-                    <li><a href="#" class="nav-link text-blue-50">Interests</a></li>
+                    <li><a class="nav-link nav-active" data-page="about">About</a></li>
+                    <li><a class="nav-link text-blue-50" data-page="cv">CV</a></li>
+                    <li><a class="nav-link text-blue-50" data-page="publications">Publications</a></li>
+                    <li><a class="nav-link text-blue-50" data-page="teaching">Teaching</a></li>
+                    <li><a class="nav-link text-blue-50" data-page="interests">Interests</a></li>
                 </ul>
             </nav>
         </header>
 
         <!-- Main Content -->
-        <!-- Main content is a white card again -->
-        <!-- ADDED padding px-4 sm:px-6 lg:px-8 -->
         <div class="bg-white none md:p-12 px-4 sm:px-6 lg:px-8">
             <!-- Main Content Grid -->
-            <!-- ADDED max-w-5xl mx-auto here to keep content centered *within* the white card -->
             <main class="flex flex-col md:flex-row gap-8 lg:gap-12 max-w-5xl mx-auto">
 
                 <!-- Left Sidebar -->
@@ -178,14 +223,13 @@
                     <div class="sticky top-8">
                         <!-- Profile Picture Placeholder -->
                         <img 
-                            src="https://media.licdn.com/dms/image/v2/D4E03AQH0rwo_r2zDoA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1674858857578?e=1766620800&v=beta&t=n2RSfSvO3uXxqQERH-d4eq3v6zWpJAt9I9aTz5RZZJI" 
+                            src="https://media.licdn.com/dms/image/v2/D4E03AQH0rwo_r2zDoA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1674858857578?e=1762992000&v=beta&t=_bfsnf-UYzutgy5x2lZQAMcFyx9s117z-ShHWIrameU" 
                             alt="Mobin Vakili" 
                             class="rounded-full w-32 h-32 md:w-40 md:h-40 object-cover mb-4"
                             onerror="this.src='https://placehold.co/400x400/E2E8F0/64748B?text=Your\nPhoto'"
                         >
                         
                         <!-- Your Title -->
-                        <!-- Text color reverted to blue -->
                         <p class="text-black mt-1 text-lg">
                             Environmental Engineer
                         </p>
@@ -194,9 +238,7 @@
                         <ul class="mt-6 space-y-3">
                             <!-- Link Item 1 (e.g., Location/Organization) -->
                             <li>
-                                <!-- Text color reverted to blue -->
                                 <a href="#" class="flex items-center text-sm text-black hover:text-blue-900 group">
-                                    <!-- Icon color reverted to blue -->
                                     <svg class="icon text-black group-hover:text-blue-900 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M9.69 18.23c.26.13.56.13.82 0 3.84-1.9 6.49-5.12 6.49-8.73C17 5.01 13.99 2 10 2S3 5.01 3 9.5c0 3.61 2.65 6.83 6.49 8.73zM10 11.5a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
                                     </svg>
@@ -247,47 +289,244 @@
 
                 <!-- Right Content Area -->
                 <section class="w-full md:w-2/3 lg:w-3/4">
-                    <!-- Text color reverted to blue -->
-                    <h2 class="text-3xl font-bold text-black mb-6 border-b border-blue-200 pb-2">
-                        About me
-                    </h2>
                     
-                    <!-- Content from CV -->
-                    <!-- Text color reverted to blue -->
-                    <div class="space-y-4 text-black leading-relaxed">
-                        <p>
-                            Welcome to my website! I am an Environmental Engineer with three years of research experience in the optimization of environmental systems using artificial intelligence algorithms.
-                        </p>
-                        <p>
-                            I am proficient in building and operating pilot-scale continuous flow systems, and skilled in the development of prediction and optimization models using Python, R and MATLAB.
-                        </p>
-                        <p>
-                            I earned my M.Sc. in Environmental Engineering from <a href="https://aut.ac.ir/" class="text-blue-600 hover:underline">Amirkabir University of Technology (Tehran Polytechnic)</a> and my B.Sc. in Civil Engineering from <a href="https://iut.ac.ir/" class="text-blue-600 hover:underline">Isfahan University of Technology</a>.
-                        </p>
+                    <!-- About Page -->
+                    <div id="about" class="page-content active">
+                        <h2 class="text-3xl font-bold text-black mb-6 border-b border-blue-200 pb-2">
+                            About me
+                        </h2>
+                        
+                        <div class="space-y-4 text-black leading-relaxed">
+                            <p>
+                                Welcome to my website! I am an Environmental Engineer with three years of research experience in the optimization of environmental systems using artificial intelligence algorithms.
+                            </p>
+                            <p>
+                                I am proficient in building and operating pilot-scale continuous flow systems, and skilled in the development of prediction and optimization models using Python, R and MATLAB.
+                            </p>
+                            <p>
+                                I earned my M.Sc. in Environmental Engineering from <a href="https://aut.ac.ir/" class="text-blue-600 hover:underline">Amirkabir University of Technology (Tehran Polytechnic)</a> and my B.Sc. in Civil Engineering from <a href="https://iut.ac.ir/" class="text-blue-600 hover:underline">Isfahan University of Technology</a>.
+                            </p>
+                        </div>
                     </div>
+
+                    <!-- CV Page -->
+                    <div id="cv" class="page-content">
+                        <h2 class="text-3xl font-bold text-black mb-6 border-b border-blue-200 pb-2">
+                            Curriculum Vitae
+                        </h2>
+                        
+                        <div class="mb-6">
+                            <a href="#" class="download-btn">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                Download Full CV (PDF)
+                            </a>
+                        </div>
+
+                        <div class="space-y-8 text-black">
+                            <!-- Education -->
+                            <div>
+                                <h3 class="text-2xl font-bold text-blue-900 mb-4">Education</h3>
+                                <div class="space-y-4">
+                                    <div class="border-l-4 border-blue-500 pl-4">
+                                        <h4 class="font-bold text-lg">M.Sc. in Environmental Engineering</h4>
+                                        <p class="text-blue-600">Amirkabir University of Technology (Tehran Polytechnic)</p>
+                                        <p class="text-gray-600">2022 - 2025</p>
+                                        <p>GPA: 3.9/4.0</p>
+                                    </div>
+                                    <div class="border-l-4 border-blue-500 pl-4">
+                                        <h4 class="font-bold text-lg">B.Sc. in Civil Engineering</h4>
+                                        <p class="text-blue-600">Isfahan University of Technology</p>
+                                        <p class="text-gray-600">2018 - 2022</p>
+                                        <p class="mt-2">Ranked among the Top %15 of the Civil Engineering Entrance</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Research Experience -->
+                            <div>
+                                <h3 class="text-2xl font-bold text-blue-900 mb-4">Research Experience</h3>
+                                <div class="space-y-4">
+                                    <div class="border-l-4 border-blue-500 pl-4">
+                                        <h4 class="font-bold text-lg">Research Assistant</h4>
+                                        <p class="text-blue-600">Environmental Engineering Lab, Amirkabir University</p>
+                                        <p class="text-gray-600">2022 - 2025</p>
+                                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                                            <li>Developed AI models for prediction and optimization of environmental systems</li>
+                                            <li>Designed and operated pilot-scale continuous flow systems</li>
+                                            <li>Published 2 research and 1 review papers</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Skills -->
+                            <div>
+                                <h3 class="text-2xl font-bold text-blue-900 mb-4">Skills</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Publications Page -->
+                    <div id="publications" class="page-content">
+                        <h2 class="text-3xl font-bold text-black mb-6 border-b border-blue-200 pb-2">
+                            Publications
+                        </h2>
+                        
+                        <div class="space-y-6">
+                            <div class="publication-item">
+                                <h3 class="text-xl font-bold text-blue-900 mb-2">A Systematic Analysis of Research Trends on the Permeable Reactive Barrier in Groundwater Remediation.</h3>
+                                <p class="text-blue-600 mb-2">International Journal of Environmental Science and Technology, 2023</p>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="text-blue-600 hover:underline">DOI: 10.1007/s13762-024-05775-6</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h3 class="text-xl font-bold text-blue-900 mb-2">Prediction of Total Dissolved Solids in Groundwater Using Machine Learning and Artificial Neural Networks.</h3>
+                                <p class="text-blue-600 mb-2">The 14th international conference on agriculture, environment, urban and rural development, 2024</p>
+                                <div class="flex space-x-4">
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h3 class="text-xl font-bold text-blue-900 mb-2">Electrode Morphology in Electrocoagulation: Experimental Evaluation of Chromium Removal Using Iron Electrodes</h3>
+                                <p class="text-blue-600 mb-2">Journal of Water and Wastewater, 2025</p>
+                                <div class="flex space-x-4">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Teaching Page -->
+                    <div id="teaching" class="page-content">
+                        <h2 class="text-3xl font-bold text-black mb-6 border-b border-blue-200 pb-2">
+                            Teaching Experience
+                        </h2>
+                        
+                        <div class="space-y-6">
+                            <div class="teaching-item">
+                                <h3 class="text-xl font-bold text-blue-900 mb-2">Teaching Assistant - Environmental Geotechnics</h3>
+                                <p class="text-blue-600 mb-2">Amirkabir University of Technology, Spring 2023-Spring 2025</p>
+                                <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                </ul>
+                            </div>
+
+                            <div class="teaching-item">
+                                <h3 class="text-xl font-bold text-blue-900 mb-2">Teaching Assistant - Environmental Engineering</h3>
+                                <p class="text-blue-600 mb-2">Amirkabir University of Technology, Fall 2022-Spring 2025</p>
+                                <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                </ul>
+                            </div>
+
+                            <div class="teaching-item">
+                                <h3 class="text-xl font-bold text-blue-900 mb-2">Teaching Assistant - Solid Waste Management</h3>
+                                <p class="text-blue-600 mb-2">Amirkabir University of Technology, Fall 2023-Fall 2025</p>
+                                <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                </ul>
+                            </div>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interests Page -->
+                    <div id="interests" class="page-content">
+                        <h2 class="text-3xl font-bold text-black mb-6 border-b border-blue-200 pb-2">
+                            Interests
+                        </h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="interest-card">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-blue-900">Sustainable Technology</h3>
+                                </div>
+                                <p class="text-gray-700">Exploring innovative solutions for sustainable water management, renewable energy integration in wastewater treatment, and circular economy approaches in environmental engineering.</p>
+                            </div>
+
+                            <div class="interest-card">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-blue-900">AI & Machine Learning</h3>
+                                </div>
+                                <p class="text-gray-700">Applying advanced machine learning techniques to solve complex environmental problems, from predictive modeling to optimization algorithms for system control.</p>
+                            </div>
+
+                            <div class="interest-card">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-blue-900">Research & Development</h3>
+                                </div>
+                                <p class="text-gray-700">Conducting cutting-edge research in environmental engineering, with focus on pilot-scale system development, novel treatment processes, and interdisciplinary collaborations.</p>
+                            </div>
+
+                            <div class="interest-card">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-blue-900">Academic Community</h3>
+                                </div>
+                                <p class="text-gray-700">Engaging with the scientific community through conferences, journal reviewing, and mentoring students. Passionate about knowledge sharing and collaborative research.</p>
+                            </div>
+
+                            <div class="interest-card md:col-span-2">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-blue-900">Open Source & Technology</h3>
+                                </div>
+                                <p class="text-gray-700">Contributing to open-source projects related to environmental data analysis and modeling. Exploring emerging technologies like IoT, blockchain for environmental applications, and developing tools to make environmental data more accessible and actionable for researchers and practitioners.</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </section>
 
             </main>
         </div>
 
         <!-- Footer -->
-        <!-- ADDED padding px-4 sm:px-6 lg:px-8 -->
         <footer class="border-t border-blue-200 border-opacity-50 pt-8 px-4 sm:px-6 lg:px-8">
-            <!-- ADDED max-w-5xl mx-auto here to keep content centered *within* the footer -->
             <div class="flex flex-col sm:flex-row justify-between items-center text-sm text-blue-100 max-w-5xl mx-auto">
                 <div class="mb-4 sm:mb-0">
                     <h4 class="font-semibold text-white">Sitemap</h4>
                     <ul class="flex space-x-4 mt-1">
-                        <li><a href="#" class="hover:text-white">About</a></li>
-                        <li><a href="#" class="hover:text-white">CV</a></li>
-                        <li><a href="#" class="hover:text-white">Publications</a></li>
+                        <li><a class="hover:text-white cursor-pointer" data-page="about">About</a></li>
+                        <li><a class="hover:text-white cursor-pointer" data-page="cv">CV</a></li>
+                        <li><a class="hover:text-white cursor-pointer" data-page="publications">Publications</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-semibold text-white">Follow</h4>
                     <ul class="flex space-x-4 mt-1">
-                        <li><a href="#" class="hover:text-white">GitHub</a></li>
-                        <li><a href="#" class="hover:text-white">LinkedIn</a></li>
+                        <li><a href="https://github.com/MobinVakili" class="hover:text-white">GitHub</a></li>
+                        <li><a href="https://www.linkedin.com/in/mobinvakili/" class="hover:text-white">LinkedIn</a></li>
                     </ul>
                 </div>
             </div>
@@ -298,7 +537,87 @@
 
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Page switching functionality
+            const navLinks = document.querySelectorAll('.nav-link');
+            const footerLinks = document.querySelectorAll('footer a[data-page]');
+            const pageContents = document.querySelectorAll('.page-content');
+            
+            // Function to switch pages
+            function switchPage(pageId) {
+                // Update active page content
+                pageContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === pageId) {
+                        content.classList.add('active');
+                    }
+                });
+                
+                // Update navigation links
+                navLinks.forEach(link => {
+                    link.classList.remove('nav-active');
+                    link.classList.add('text-blue-50');
+                    
+                    if (link.getAttribute('data-page') === pageId) {
+                        link.classList.add('nav-active');
+                        link.classList.remove('text-blue-50');
+                    }
+                });
+                
+                // Update page title
+                const pageTitles = {
+                    'about': 'About me',
+                    'cv': 'Curriculum Vitae',
+                    'publications': 'Publications',
+                    'teaching': 'Teaching Experience',
+                    'interests': 'Interests'
+                };
+                
+                document.title = `Mobin Vakili - ${pageTitles[pageId] || 'Portfolio'}`;
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            }
+            
+            // Add click event listeners to navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    switchPage(pageId);
+                });
+            });
+            
+            // Add click event listeners to footer links
+            footerLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    switchPage(pageId);
+                });
+            });
+            
+            // Check URL hash for initial page
+            const hash = window.location.hash.substring(1);
+            const validPages = ['about', 'cv', 'publications', 'teaching', 'interests'];
+            
+            if (validPages.includes(hash)) {
+                switchPage(hash);
+            } else {
+                // Default to about page
+                switchPage('about');
+            }
+            
+            // Update URL hash when switching pages
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const pageId = this.getAttribute('data-page');
+                    window.location.hash = pageId;
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>
-
-
